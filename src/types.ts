@@ -8,7 +8,12 @@ import type {
 } from '@trpc/server/unstable-core-do-not-import';
 import type { AnyZodObject, ZodIssue } from 'zod';
 
-export { type OpenAPIObject, type SecuritySchemeObject } from 'openapi3-ts/oas31';
+export {
+  type OpenAPIObject,
+  type SecuritySchemeObject,
+  type TagObject,
+  type SecurityRequirementObject,
+} from 'openapi3-ts/oas31';
 
 export type OpenApiMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
 

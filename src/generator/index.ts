@@ -1,6 +1,12 @@
 import { ZodOpenApiObject, ZodOpenApiPathsObject, createDocument } from 'zod-openapi';
 
-import { type OpenAPIObject, OpenApiRouter, type SecuritySchemeObject } from '../types';
+import {
+  OpenApiRouter,
+  type OpenAPIObject,
+  type SecurityRequirementObject,
+  type SecuritySchemeObject,
+  type TagObject,
+} from '../types';
 import { getOpenApiPathsObject, mergePaths } from './paths';
 
 export interface GenerateOpenApiDocumentOptions {
@@ -10,8 +16,9 @@ export interface GenerateOpenApiDocumentOptions {
   openApiVersion?: ZodOpenApiObject['openapi'];
   baseUrl: string;
   docsUrl?: string;
-  tags?: string[];
+  tags?: string[] | TagObject[];
   securitySchemes?: Record<string, SecuritySchemeObject>;
+  security?: SecurityRequirementObject[];
   paths?: ZodOpenApiPathsObject;
 }
 
@@ -41,7 +48,8 @@ export const generateOpenApiDocument = (
     components: {
       securitySchemes,
     },
-    tags: opts.tags?.map((tag) => ({ name: tag })),
+    security: opts.security,
+    tags: opts.tags?.map((tag) => (typeof tag === 'string' ? { name: tag } : tag)),
     externalDocs: opts.docsUrl ? { url: opts.docsUrl } : undefined,
   });
 };

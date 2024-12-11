@@ -51,6 +51,7 @@ describe('generator', () => {
         },
         "openapi": "3.0.3",
         "paths": Object {},
+        "security": undefined,
         "servers": Array [
           Object {
             "url": "http://localhost:3000/api",
@@ -1089,6 +1090,7 @@ describe('generator', () => {
             },
           },
         },
+        "security": undefined,
         "servers": Array [
           Object {
             "url": "http://localhost:3000/api",
